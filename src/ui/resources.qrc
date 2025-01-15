@@ -1,0 +1,21 @@
+<RCC>
+  <qresource prefix="ui/">
+    <file>icons/file_open.svg</file>
+    <file>icons/align_cente.svg</file>
+    <file>icons/align_justify.svg</file>
+    <file>icons/align_left.svg</file>
+    <file>icons/align_right.svg</file>
+    <file>icons/bold.svg</file>
+    <file>icons/Bulk Email Sender.ico</file>
+    <file>icons/cancel.svg</file>
+    <file>icons/clear.png</file>
+    <file>icons/clear_all.svg</file>
+    <file>icons/italic.svg</file>
+    <file>icons/reset_settings.svg</file>
+    <file>icons/save.svg</file>
+    <file>icons/save_as.svg</file>
+    <file>icons/send.svg</file>
+    <file>icons/settings.png</file>
+    <file>icons/underlined.svg</file>
+  </qresource>
+</RCC>
