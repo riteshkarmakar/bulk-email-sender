@@ -1,8 +1,10 @@
-<div align="center"><h1>Bulk Email Sender</h1></div>
 
-It is a PySide6-based application designed to send personalized emails in bulk. The application supports dynamic placeholders, attachment handling, and preview functionality to streamline your email campaigns.
+![Banner](.github/images/banner.png)
+
+<b>Bulk Email sender</b> is a PySide6-based application designed to send personalized emails in bulk. The application supports dynamic placeholders, attachment handling, and preview functionality to streamline your email campaigns.
 
 ![Main Window](.github/images/main_window.png)
+
 
 ## Features
 
@@ -62,19 +64,6 @@ It is a PySide6-based application designed to send personalized emails in bulk. 
     - **Note**: The app requires an app password instead of your regular email password. Follow [this guide](https://knowledge.workspace.google.com/kb/how-to-create-app-passwords-000009237) to set up an app password.
 
 
-## Screenshots
-
-### Settings Dialog
-![Settings Dialog](.github/images/settings_dialog.png)
-
-### Preview Dialog
-![Preview Dialog](.github/images/preview_dialog.png)
-
-### Progress Dialog
-![Progress Dialog](.github/images/progress_dialog.png)
-
----
-
 ## Potential Issues
 
 ### Windows Defender False Flagging
@@ -90,6 +79,16 @@ This application may be flagged as a virus by Windows Defender due to its email-
 
    Replace `<your-username>` with your actual Windows username.
 
+## Screenshots
+
+### Settings Dialog
+![Settings Dialog](.github/images/settings_dialog.png)
+
+### Preview Dialog
+![Preview Dialog](.github/images/preview_dialog.png)
+
+### Progress Dialog
+![Progress Dialog](.github/images/progress_dialog.png)
 ---
 
 ## Credits
