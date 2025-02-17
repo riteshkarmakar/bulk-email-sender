@@ -1,6 +1,7 @@
 import logging
 from PySide6.QtWidgets import QDialog, QMessageBox, QVBoxLayout, QTextEdit, QProgressBar, QLabel
 from worker_thread import EmailSenderThread
+from PySide6.QtGui import QTextCursor
 
 
 class QTextEditLogger(logging.Handler):
@@ -20,6 +21,10 @@ class QTextEditLogger(logging.Handler):
         color = self.level_colors.get(record.levelname, "#000000")  # Default to black
         colored_message = f'<span style="color: {color};">{log_entry}</span>'
         self.text_edit.append(colored_message)
+
+        # Auto-scroll to the end
+        self.text_edit.moveCursor(QTextCursor.MoveOperation.End)
+        self.text_edit.ensureCursorVisible()
 
 
 class ProgressDialog(QDialog):

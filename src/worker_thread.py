@@ -16,12 +16,12 @@ class EmailSenderThread(QThread):
         self.email_sender = EmailSender(self.login_config, self.signals)
         try:
             self.email_sender.send_emails(self.email_data)
-            self.signals.finished.emit()
         except InvalidDataException as e:
             self.signals.warning.emit(str(e))
         except Exception as e:
             self.signals.error.emit(str(e))
-            raise
+        else:
+            self.signals.finished.emit()
 
     def stop(self) -> None:
         self.email_sender.stop()
