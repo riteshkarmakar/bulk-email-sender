@@ -1,30 +1,8 @@
 import logging
 from PySide6.QtWidgets import QDialog, QMessageBox, QVBoxLayout, QTextEdit, QProgressBar, QLabel
+from PySide6.QtCore import QDateTime
 from worker_thread import EmailSenderThread
-from PySide6.QtGui import QTextCursor
-
-
-class QTextEditLogger(logging.Handler):
-    def __init__(self, text_edit: QTextEdit):
-        super().__init__()
-        self.text_edit = text_edit
-        self.level_colors = {
-            "DEBUG": "#808080",     # Gray
-            "INFO": "#000000",      # Black
-            "WARNING": "#FFA500",   # Orange
-            "ERROR": "#FF0000",     # Red
-            "CRITICAL": "#8B0000",  # Dark Red
-        }
-
-    def emit(self, record):
-        log_entry = self.format(record)
-        color = self.level_colors.get(record.levelname, "#000000")  # Default to black
-        colored_message = f'<span style="color: {color};">{log_entry}</span>'
-        self.text_edit.append(colored_message)
-
-        # Auto-scroll to the end
-        self.text_edit.moveCursor(QTextCursor.MoveOperation.End)
-        self.text_edit.ensureCursorVisible()
+from typing import Literal
 
 
 class ProgressDialog(QDialog):
@@ -35,7 +13,10 @@ class ProgressDialog(QDialog):
         self.total_emails = total_emails
         self.init_ui()
         self.init_signals_slots()
-        self.setup_logging()
+
+    @staticmethod
+    def get_formatted_time() -> str:
+        return QDateTime.currentDateTime().toString("yyyy-MM-dd HH:mm:ss")
 
     def init_ui(self)-> None:
         self.setWindowTitle("Sending Emails")
@@ -57,27 +38,17 @@ class ProgressDialog(QDialog):
         vbox.addWidget(self.textedit_log)
         self.setLayout(vbox)
 
-    def setup_logging(self):
-        text_edit_handler = QTextEditLogger(self.textedit_log)
-        text_edit_handler.setLevel(logging.INFO)
-        text_edit_handler.setFormatter(logging.Formatter("%(asctime)s - %(message)s"))
-        logger = logging.getLogger()
-
-        # Remove any existing QTextEditLogger handlers
-        old_handlers = [h for h in logger.handlers if isinstance(h, QTextEditLogger)]
-        for handler in old_handlers:
-            logger.removeHandler(handler)
-            handler.close()
-
-        # Add the new QTextEditLogger handler with the updated QTextEdit
-        logger.addHandler(text_edit_handler)
-
     def init_signals_slots(self) -> None:
         self.email_thread.signals.warning.connect(self.handle_warning_signal)
         self.email_thread.signals.started.connect(self.handle_started_signal)
-        self.email_thread.signals.progress.connect(self.progressbar.setValue)
+        self.email_thread.signals.progress.connect(self.handle_progress_signal)
+        self.email_thread.signals.log.connect(self.append_log_to_textedit)
         self.email_thread.signals.error.connect(self.handle_error_signal)
         self.email_thread.signals.finished.connect(self.handle_finished_signal)
+
+    def append_log_to_textedit(self, msg: str, color: Literal["RED", "ORNGE", "BLUE", "GREY", "BLACK", "GREEN"] = "BLACK") -> None:
+        logging.info(msg)
+        self.textedit_log.append(f'<span style="color: {color};">{self.get_formatted_time()} - {msg}</span>')
 
     def handle_warning_signal(self, msg: str) -> None:
         self._is_running = False
@@ -88,16 +59,20 @@ class ProgressDialog(QDialog):
         self._is_running = True
         self.show()
 
+    def handle_progress_signal(self, index: int) -> None:
+        self.progressbar.setValue(index)
+
     def handle_error_signal(self, msg: str) -> None:
         self._is_running = False
-        logging.error(msg)
+        self.append_log_to_textedit(msg, "RED")
         QMessageBox.critical(self, "Error!", msg)
 
     def handle_finished_signal(self) -> None:
         self._is_running = False
         if self.progressbar.value() == self.progressbar.maximum():
-            logging.info("All emails have been sent successfully.")
-            QMessageBox.information(self, "Success!", "All emails have been sent successfully.")
+            msg = "All emails have been sent successfully!"
+            self.append_log_to_textedit(msg, "GREEN")
+            QMessageBox.information(self, "Success!", msg)
 
     def closeEvent(self, event):
         if not self._is_running:

@@ -11,6 +11,7 @@ class EmailSenderThread(QThread):
         self.login_config = login_config
         self.email_data = email_data
         self.signals = WorkerSignals()
+        self.email_sender = None
 
     def run(self) -> None:
         self.email_sender = EmailSender(self.login_config, self.signals)
@@ -24,5 +25,6 @@ class EmailSenderThread(QThread):
             self.signals.finished.emit()
 
     def stop(self) -> None:
-        self.email_sender.stop()
+        if self.email_sender:
+            self.email_sender.stop()
         

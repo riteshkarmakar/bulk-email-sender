@@ -7,6 +7,7 @@ from PySide6.QtCore import QObject, Signal
 class WorkerSignals(QObject):
     started = Signal()
     progress = Signal(int)
+    log = Signal(str)
     warning = Signal(str)
     error = Signal(str)
     finished = Signal()

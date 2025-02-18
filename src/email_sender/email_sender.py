@@ -1,4 +1,5 @@
-import logging, numpy, pandas as pd
+import numpy
+import pandas as pd
 from pathlib import Path
 from schemas import EmailLoginConfig, EmailData, WorkerSignals
 
@@ -29,7 +30,7 @@ class EmailSender:
         server.starttls(context=ssl.create_default_context())
         server.login(email, password)
 
-        logging.info(f"Successfully logged into the email server at {host}:{port}.")
+        self.signals.log.emit(f"Successfully logged into the email server at {host}:{port}.")
 
         return server
     
@@ -176,10 +177,9 @@ class EmailSender:
 
                 server.sendmail(from_addr, to_addrs, message.as_string())
 
-                # Emit the progress signal
+                # Emit the progress and log signals
                 self.signals.progress.emit(index + 1)
-
-                logging.info(f"Email #{index + 1} successfully sent to recipient: {recipient_email}")
+                self.signals.log.emit(f"Email #{index + 1} successfully sent to recipient: {recipient_email}")
 
         finally:
             self._is_running = False
