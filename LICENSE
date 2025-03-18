@@ -1,0 +1,53 @@
+                  PERSONAL USE AND CONTRIBUTION LICENSE  
+                           Version 1.0, March 2025  
+
+Copyright (C) 2025 Ritesh Karmakar
+Contact: riteshkarmakar7407@gmail.com 
+
+Everyone is permitted to use and contribute to this software,
+but distribution outside the original repository is not allowed.  
+
+                              PREAMBLE  
+
+  The Personal Use and Contribution License (PUCL) is designed to allow individuals
+to freely use and contribute to this software while ensuring that commercial
+usage is regulated.  
+
+  This license grants personal users the freedom to use, modify, and contribute
+to the software via pull requests to the official repository. However, redistribution,
+modification outside the original repository, or commercial usage requires explicit
+permission from the author.  
+
+  This ensures that while the software remains accessible for personal and educational use,
+commercial users must obtain a license from the author.  
+
+                           TERMS AND CONDITIONS  
+
+1. GRANT OF LICENSE 
+     a) Individuals are free to use, modify, and contribute to the official repository at:
+        https://github.com/riteshkarmakar/bulk-email-sender
+     b) Modifications must be submitted as pull requests to the original repository.  
+
+2. COMMERCIAL USE RESTRICTIONS
+     a) Commercial use of this software is not permitted without a paid license.  
+     b) Commercial use includes, but is not limited to using the software in a business or corporate setting.  
+     c) To obtain a commercial license, contact: riteshkarmakar7407@gmail.com.  
+
+3. MODIFICATION AND DISTRIBUTION RESTRICTIONS  
+     a) Users may not modify and distribute this software outside the original repository.  
+     b) Forking the repository for independent distribution is not allowed.  
+     c) Any unauthorized distribution may result in legal action.  
+
+4. CONTRIBUTIONS
+     a) By contributing to the repository, contributors grant the author a non-exclusive,
+        royalty-free license to use, modify, and distribute their contributions.  
+     b) The author reserves the right to accept or reject contributions.  
+
+5. WARRANTY DISCLAIMER  
+     THIS SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND.
+   THE AUTHOR DISCLAIMS ALL LIABILITY FOR DAMAGES RESULTING FROM THE
+   USE OR MISUSE OF THIS SOFTWARE.  
+
+6. LICENSE UPDATES
+     This license may be updated in future versions. Users must follow the
+   latest license terms when using newer versions of the software.
