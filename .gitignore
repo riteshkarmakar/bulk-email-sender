@@ -5,6 +5,7 @@ scripts
 data
 Email Templates
 src/login_config.json
+version.txt
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

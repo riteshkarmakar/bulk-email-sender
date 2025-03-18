@@ -35,8 +35,8 @@
 
 1. Clone the repository:
     ```
-    git clone <repository_url>
-    cd <repository_name>
+    git clone https://github.com/riteshkarmakar/bulk-email-sender.git
+    cd bulk-email-sender
     ```
 
 2. Install dependencies:
@@ -95,10 +95,19 @@ This application may be flagged as a virus by Windows Defender due to its email-
 
 - **Developer**: Ritesh Karmakar
 - **External Libraries/Tools Used**:
-  - [PySide6](https://pypi.org/project/PyQt6/)
+  - [PySide6](https://pypi.org/project/PySide6/)
   - [pandas](https://pypi.org/project/pandas/)
   - [requests](https://pypi.org/project/requests/)
 - **Application icon** <a href="https://www.flaticon.com/free-icons/send" title="send icons">Send icons created by Prosymbols - Flaticon</a>
+
+## License
+This project is licensed under the **Personal Use and Contribution License (PUCL) v1.0.**
+
+- Personal use is free.
+- Modifications must be made via pull requests to the original repository.
+- Commercial use requires a paid license.
+
+See the full license [here](https://github.com/riteshkarmakar/bulk-email-sender/blob/master/LICENSE).
 
 ## Feedback and Support
 If you encounter any issues or have feature suggestions, please reach out via riteshkarmakar7407@gmail.com.
